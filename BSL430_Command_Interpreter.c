@@ -144,7 +144,7 @@ void main(void)
     volatile int i, ii;
 
     P8DIR |= 0x80;   // configure P8.7 as output
-    P1OUT &= ~0x80;  // reset
+    P8OUT |= 0x80;   // RS485 rx listen mode
 
     BSL430_API_RAM_Clear(); // Moved from BSL430_API_init() into independent function
     BSL430_API_init();
