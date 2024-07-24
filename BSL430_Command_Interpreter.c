@@ -166,7 +166,6 @@ void main(void)
     while (1)
     {
         eventFlags = PI_receivePacket();
-//        sendByte('M');
         if (eventFlags &  DATA_RECEIVED)
         {
             interpretCommand();

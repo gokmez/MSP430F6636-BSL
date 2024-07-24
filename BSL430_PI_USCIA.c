@@ -142,9 +142,11 @@ void PI_init()
 
 	  // turn off XT1 and XT2
 	  UCSCTL6 |= XT1OFF + XT2OFF;
+	  UCSCTL6 = 0xC1CD;
 
 	  UCSCTL3 |= SELREF_2;                      // Set DCO FLL reference = REFO
 	  UCSCTL4 |= SELA_2;                        // Set ACLK = REFO
+	  UCSCTL4 = 0x0244;
 
 	  __bis_SR_register(SCG0);                  // Disable the FLL control loop
 	  UCSCTL0 = 0x0000;                         // Set lowest possible DCOx, MODx
@@ -153,6 +155,9 @@ void PI_init()
 	                                            // (N + 1) * FLLRef = Fdco
 	                                            // (249 + 1) * 32768 = 8MHz
 	                                            // Set FLL Div = fDCOCLK/2
+	  UCSCTL0 = 0x13A8;
+      UCSCTL7 = 0x0400;
+      UCSCTL8 = 0x0707;
 	  __bic_SR_register(SCG0);                  // Enable the FLL control loop
 
 	  // Worst-case settling time for the DCO when the DCO range bits have been
