@@ -296,11 +296,11 @@ void sendByte(char data)
 {
   volatile unsigned int i;
 
-  P8OUT &= ~0x80;             // RS485 tx mode
+  P8OUT |= 0x80;              // RS485 tx mode
   while (!(UCA1IFG&UCTXIFG)); // USCI_A1 TX buffer ready?
   UCA1TXBUF = data;
   for(i=2500; i>0; i--);      // delay
-  P8OUT |= 0x80;              // RS485 rx listen mode
+  P8OUT &= ~0x80;             // RS485 rx listen mode
 }
 /*******************************************************************************
 *Function:    receiveByte
